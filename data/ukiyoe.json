@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "La Grande Vague de Kanagawa",
+    "artist": "Hokusai",
+    "year": 1831,
+    "latitude": 35.3606,
+    "longitude": 138.7274
+  },
+  {
+    "id": 2,
+    "title": "Pluie soudaine sur le pont Shin-Ohashi",
+    "artist": "Hiroshige",
+    "year": 1857,
+    "latitude": 35.6895,
+    "longitude": 139.6917
+  },
+  {
+    "id": 3,
+    "title": "Le Vent du Sud, ciel clair",
+    "artist": "Hokusai",
+    "year": 1830,
+    "latitude": 35.7101,
+    "longitude": 139.8107
+  }
+]
