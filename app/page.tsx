@@ -1,10 +1,14 @@
-import Map from "@/app/components/Map";
+"use client";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import Map from "@/components/Map";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Carte interactive d'Ukiyo-e</h1>
+    <div className="container">
+      <Header />
+      <Sidebar />
       <Map />
-    </main>
+    </div>
   );
 }
