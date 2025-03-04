@@ -14,5 +14,13 @@
     "year": 1857,
     "latitude": 35.6895,
     "longitude": 139.6917
+  },
+  {
+    "id": 3,
+    "title": "La Grande Vague de Kanagawa",
+    "artist": "Hokusai",
+    "year": 1831,
+    "latitude": 33.3606,
+    "longitude": 138.7274
   }
 ]

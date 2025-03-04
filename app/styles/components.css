@@ -1,0 +1,95 @@
+/* Sidebar Component */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 2px 0 10px var(--shadow-color);
+  overflow-y: auto;
+  z-index: 900;
+}
+
+.sidebar-header {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-family: "Noto Serif JP", serif;
+}
+
+/* Filter Components */
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  background: white;
+  color: var(--text-color);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+/* Header Component */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  z-index: 1000;
+}
+
+.header h1 {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.75rem;
+  color: var(--primary-color);
+}
+
+/* Marker Component */
+.marker {
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.marker:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+  }
+  
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .header h1 {
+    font-size: 1.4em;
+  }
+}
