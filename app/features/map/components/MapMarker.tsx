@@ -1,5 +1,5 @@
 "use client";
-
+// app/features/map/components/MapMarker.tsx
 import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import Image from 'next/image';
@@ -14,18 +14,23 @@ type MapMarkerProps = {
 const MapMarker: React.FC<MapMarkerProps> = ({ item }) => {
   const { setSelectedItem } = useMapContext();
   
-  // Create a custom marker icon if needed
-  // const customIcon = new Icon({...});
+  // Ouvrir le détail complet de l'œuvre
+  const handleViewDetails = (e: React.MouseEvent) => {
+    e.preventDefault(); // Empêcher le comportement par défaut
+    
+    // Fermer le popup en sélectionnant l'élément actuel
+    setSelectedItem(item);
+  };
   
   return (
     <Marker 
       position={[item.location.coordinates[1], item.location.coordinates[0]]} 
       eventHandlers={{
         click: () => {
-          setSelectedItem(item);
+          // Ceci ouvre seulement le popup, pas le détail complet
+          console.log(`Marker clicked: ${item.title}`);
         },
       }}
-      // icon={customIcon}
     >
       <Popup>
         <div className="marker-popup">
@@ -34,7 +39,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({ item }) => {
           <p>Date: {formatDate(item.date)}</p>
           <p>Période: {item.period}</p>
           {item.thumbnailUrl && (
-            <div style={{ position: 'relative', width: 100, height: 100 }}>
+            <div style={{ position: 'relative', width: 100, height: 100, margin: '8px 0' }}>
               <Image 
                 src={item.thumbnailUrl} 
                 alt={item.title} 
@@ -45,7 +50,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({ item }) => {
             </div>
           )}
           <button 
-            onClick={() => setSelectedItem(item)}
+            onClick={handleViewDetails}
             className="view-details-btn"
           >
             Voir détails
