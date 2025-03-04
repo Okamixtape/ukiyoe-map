@@ -1,4 +1,4 @@
-import { UkiyoeItem } from '../types/UkiyoeItem';
+import { UkiyoeItem } from '@/types/UkiyoeItem';
 
 /**
  * Filter ukiyoe items by artist

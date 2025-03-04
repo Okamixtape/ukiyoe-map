@@ -3,9 +3,9 @@
 import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import Image from 'next/image';
-import { UkiyoeItem } from '../../../types/UkiyoeItem';
-import { useMapContext } from '../../../context/MapContext';
-import { formatDate } from '../../../lib/helpers';
+import { UkiyoeItem } from '@/types/UkiyoeItem';
+import { useMapContext } from '@/context/MapContext';
+import { formatDate } from '@/lib/helpers';
 
 type MapMarkerProps = {
   item: UkiyoeItem;
