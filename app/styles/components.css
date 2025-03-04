@@ -39,6 +39,25 @@
   font-family: "Noto Serif JP", serif;
 }
 
+.sidebar-subtitle {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  font-family: "Noto Serif JP", serif;
+}
+
+.sidebar-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.sidebar-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
 /* Filter Components */
 .filter-group {
   margin-bottom: 1.5rem;
@@ -96,11 +115,201 @@
   transform: scale(1.2);
 }
 
+/* Marker popup */
+.marker-popup {
+  padding: 0.75rem;
+  max-width: 250px;
+}
+
+.marker-popup h3 {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.marker-popup p {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Style pour le focus sur un marqueur sélectionné */
+.selected-marker {
+  z-index: 500 !important;
+}
+
+.view-details-btn {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-details-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+
+/* Artwork Detail Component */
+.artwork-detail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.artwork-detail-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.artwork-detail-closed {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.artwork-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.artwork-detail-title {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.artwork-detail-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.artwork-detail-close:hover {
+  color: var(--primary-color);
+}
+
+.artwork-detail-image-container {
+  width: 100%;
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+}
+
+.artwork-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.artwork-detail-info {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.artwork-detail-info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.artwork-detail-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.artwork-detail-value {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.artwork-detail-description {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.artwork-detail-subtitle {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+/* Overlay */
+.artwork-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .artwork-detail-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .artwork-detail-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Animation d'entrée/sortie */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+/* Reset button */
 .reset-button {
   display: block;
   width: 100%;
   padding: 0.75rem;
-  margin-top: 1rem;
   background-color: var(--secondary-color);
   color: white;
   border: none;
@@ -111,7 +320,7 @@
 }
 
 .reset-button:hover {
-  background-color: #2c3e50;
+  background-color: #243342;
 }
 
 /* Responsive design */
