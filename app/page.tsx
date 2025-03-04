@@ -5,12 +5,12 @@ import Map from "@/components/map/Map";
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className="layout-container">
       <Header />
-      <main>
+      <div className="content-container">
         <Sidebar />
         <Map />
-      </main>
+      </div>
     </div>
   );
 }

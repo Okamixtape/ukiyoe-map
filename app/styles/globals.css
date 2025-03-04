@@ -6,6 +6,7 @@
   --background-color: #ECF0F1;
   --text-color: #2C3E50;
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --sidebar-width: 300px;
 }
 
 * {
