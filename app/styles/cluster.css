@@ -1,0 +1,150 @@
+/* app/styles/cluster.css */
+.marker-cluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+.cluster-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.cluster-small {
+  background-color: rgba(44, 62, 80, 0.8);
+  font-size: 12px;
+}
+
+.cluster-medium {
+  background-color: rgba(44, 62, 80, 0.85);
+  font-size: 14px;
+}
+
+.cluster-large {
+  background-color: rgba(44, 62, 80, 0.9);
+  font-size: 16px;
+}
+
+/* Animation pour les clusters */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: transparent !important;
+  transition: transform 0.3s ease;
+}
+
+.marker-cluster-small:hover,
+.marker-cluster-medium:hover,
+.marker-cluster-large:hover {
+  transform: scale(1.1);
+}
+
+/* Styles pour les spinners de chargement */
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--primary-color);
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Styles pour les contrôles de carte personnalisés */
+.custom-map-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-control-button {
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.map-control-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Animation de transition pour les marqueurs */
+.leaflet-marker-icon {
+  transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Animation pour les popups */
+.leaflet-popup {
+  opacity: 1;
+  /* Supprimez transform: translateY(20px); qui cause le déplacement */
+  /* Supprimez l'animation qui peut causer des problèmes de positionnement */
+}
+
+/* Styles stabilisateurs pour les popups */
+.leaflet-popup-content-wrapper {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  padding: 13px;
+}
+
+.leaflet-popup-tip-container {
+  /* Assurez-vous que la flèche pointe correctement vers le marqueur */
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  width: 20px;
+  height: 17px;
+}
+
+/* Force la position de la popup */
+.leaflet-popup-pane {
+  z-index: 700;
+  pointer-events: none;
+}
+
+.leaflet-popup-content {
+  pointer-events: auto; /* Pour permettre les interactions dans la popup */
+}
+
+@keyframes popup-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

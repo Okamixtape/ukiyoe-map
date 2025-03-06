@@ -1,6 +1,7 @@
 "use client";
 // app/page.tsx
 import { useState, useEffect } from "react";
+import ClientOnly from "@/components/ClientOnly";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import Map from "@/components/map/Map";
@@ -34,7 +35,9 @@ export default function Home() {
       <Header />
       <main>
         <Sidebar />
-        <Map />
+        <ClientOnly>
+          <Map />
+        </ClientOnly>
         
         {/* Overlay qui apparaît derrière le détail */}
         {isDetailOpen && selectedItem && (
