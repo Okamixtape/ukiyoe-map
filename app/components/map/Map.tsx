@@ -1,11 +1,16 @@
 "use client";
-import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
+// app/components/map/Map.tsx
+import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMapContext } from "@/context/MapContext";
 import { sampleItems } from "@/data/sampleItem";
-import MapMarker from "@/features/map/components/MapMarker";
+import { UkiyoeItem } from "@/types/UkiyoeItem";
 import L from "leaflet";
+import { config } from "@/config";
+import MarkerClusterGroup from "@/features/map/components/MarkerClusterGroup";
+import MapControls from "@/features/map/components/MapControls";
+import LoadingIndicator from "@/components/ui/LoadingIndicator";
 
 // Fix Leaflet icon issues with Next.js
 function fixLeafletIcons() {
@@ -23,7 +28,8 @@ function fixLeafletIcons() {
 }
 
 export default function Map() {
-  const { filteredItems, setFilteredItems } = useMapContext();
+  const { filteredItems, setFilteredItems, setSelectedItem } = useMapContext();
+  const [loading, setLoading] = useState(true);
   
   // Fix Leaflet icons on initial load
   useEffect(() => {
@@ -35,28 +41,51 @@ export default function Map() {
     if (filteredItems.length === 0) {
       setFilteredItems(sampleItems);
     }
+    
+    // Simuler un temps de chargement pour voir l'indicateur
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
   }, [filteredItems.length, setFilteredItems]);
+  
+  // Gérer la sélection d'un marqueur depuis le groupe de clusters
+  useEffect(() => {
+    const handleMarkerSelect = (event: Event) => {
+      const customEvent = event as CustomEvent<UkiyoeItem>;
+      setSelectedItem(customEvent.detail);
+    };
+    
+    document.addEventListener('marker-select', handleMarkerSelect);
+    
+    return () => {
+      document.removeEventListener('marker-select', handleMarkerSelect);
+    };
+  }, [setSelectedItem]);
   
   return (
     <div className="map-container">
+      {loading && <LoadingIndicator message="Chargement de la carte..." />}
+      
       <MapContainer 
-        center={[35.6895, 139.6917]} 
-        zoom={5} 
+        center={config.map.defaultCenter} 
+        zoom={config.map.defaultZoom} 
         className="map"
-        zoomControl={false} // Désactiver les contrôles de zoom par défaut
+        zoomControl={false}
+        minZoom={config.map.minZoom}
+        maxZoom={config.map.maxZoom}
       >
         <TileLayer 
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={config.map.tileUrl || "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+          attribution={config.map.attribution || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
         />
         
-        {/* Utiliser le composant ZoomControl de react-leaflet à la place */}
-        <ZoomControl position="bottomright" />
+        {/* Utiliser le nouveau composant de cluster au lieu des marqueurs individuels */}
+        <MarkerClusterGroup items={filteredItems} />
         
-        {/* Render markers for the filtered items */}
-        {filteredItems.map(item => (
-          <MapMarker key={item.id} item={item} />
-        ))}
+        {/* Ajouter les contrôles personnalisés */}
+        <MapControls />
       </MapContainer>
     </div>
   );
